@@ -146,7 +146,7 @@ int main()
             case 3: 
                 break;
             case 4:
-                int mssv_of_student= 123;
+                int mssv_of_student= 1234;
                 //printf("Enter mssv need to search: "); scanf("%d", &mssv_of_student);
                 if(numberOfStudent < MAX_STUDENT)
                 {
@@ -154,7 +154,7 @@ int main()
                 }
                 break; 
             case 5: 
-                int mssv_del = 123;
+                int mssv_del = 111;
                 delete_student_by_mssv(A_std, &numberOfStudent, mssv_del);
                 break; 
 
