@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+
 #define MAX_STUDENT 100
 typedef struct
 {
@@ -68,6 +69,24 @@ void search_student_by_mssv(Student_Manager std[], int mssv, int numberOfStudent
     printf("Cannot find student with student code: %d\n", mssv);
 }
 
+void search_student_by_name(Student_Manager std[], int numberOfStudent, char name[])
+{
+    for(int i = 0; i < numberOfStudent; i++)
+    {
+        if(strcmp(std[i].name, name) == 0)
+        {
+            printf("STT\tName\t\t\tAge\tMSSV\t\tSex\t\tGPA\n");
+            printf("%-8d", std[i].stt);
+            printf("%-24s", std[i].name);
+            printf("%-8d", std[i].age);
+            printf("%-16d", std[i].mssv);
+            printf("%-16s", std[i].sex);
+            printf("%-8.2f\n", std[i].gpa);
+            return;
+        }
+    }
+    printf("Student with '%s' does not exist!\n", name);
+}
 void delete_student_by_mssv(Student_Manager std[], int *numberOfStudent, int mssv)
 {
     for(int i = 0; i < *numberOfStudent; i++)
@@ -102,6 +121,30 @@ void sort_by_gpa(Student_Manager std[], int numberStudent)
         }
     }
 }
+
+
+void std_hightest_gpa(Student_Manager std[], int numberStudent)
+{
+    
+    Student_Manager std_hightest = std[0];
+    for(int i = 1; i < numberStudent; i++)
+    {
+        if(std_hightest.gpa < std[i].gpa)
+        {
+            std_hightest = std[i];
+        }
+    }
+            printf("STT\tName\t\t\tAge\tMSSV\t\tSex\t\tGPA\n");
+            printf("%-8d", std_hightest.stt);
+            printf("%-24s", std_hightest.name);
+            printf("%-8d", std_hightest.age);
+            printf("%-16d", std_hightest.mssv);
+            printf("%-16s", std_hightest.sex);
+            printf("%-8.2f\n", std_hightest.gpa);
+            return;
+}
+
+
 int main()
 {
     int choice; 
@@ -144,6 +187,8 @@ int main()
                 else printf("The student list is empty!\n");
                 break; 
             case 3: 
+                char name[] = "do chi dung";
+                search_student_by_name(A_std, numberOfStudent, name);
                 break;
             case 4:
                 int mssv_of_student= 1234;
@@ -159,6 +204,12 @@ int main()
                 break; 
 
             case 6:
+                if(numberOfStudent > 0)
+                {
+                    std_hightest_gpa(A_std, numberOfStudent);
+                }
+                else printf("The student list is empty!\n");
+            
                 break;
 
             case 7: 
